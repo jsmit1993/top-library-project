@@ -32,7 +32,7 @@ body {
     border-radius: 20px;
 }
 
-.closebutton {
+.closebutton, .deleteButton {
     background-color: #ff2626;
     color: white;
     border: none;
@@ -42,7 +42,20 @@ body {
 }
 
 .bookDisplay {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 250px));
+    gap: 10px;
+
+}
+
+.bookCard {
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border-left: limegreen solid 8px;
+    padding: 10px;
 }
 
 #bookModal {
