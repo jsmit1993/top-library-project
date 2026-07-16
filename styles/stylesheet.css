@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Norse Bold";
+    src: url("/fonts/Norsebold.otf");
+}
+
+body {
+    background-color: lightgray;
+}
+
+.container {
+    display: grid;
+
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.title {
+    font-family: "Norse Bold";
+    font-size: 50px;
+    font-weight: bold;
+}
+.addButton, .addButtons {
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.closebutton {
+    background-color: #ff2626;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.bookDisplay {
+    background-color: white;
+}
+
+#bookModal {
+    border-radius: 20px;
+}

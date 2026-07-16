@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Odin Project Book Library Project</title>
+    <link rel="stylesheet" href="styles/stylesheet.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="pageTitle">
+            <div class="title">Jacob's Odin Project Book Library</div>
+            <button class="addButton">+ Add New Book</button>
+        </div>
+        <div class="bookLibrary">
+            <div class="bookDisplay"></div>
+        </div>
+        <div class="libraryStats"></div>
+    </div>
+    <dialog id="bookModal">
+        <form id="bookForm" method="dialog">
+            <h3 class="title">Add a New Book</h3>
+            <label>Title: <input type="text" id="bookTitle" class="bookTitle input-form" required></label>
+            <label>Author: <input type="text" id="bookAuthor" class="bookAuthor input-form" required></label>
+            <label>Genre: <input type="" id="bookGenre" class="bookGenre input-form"></label>
+            <label>Pages: <input type="number" id="bookPages" class="bookPages input-form" required></label>
+            <label>Read: <input type="radio" id="bookReadY" name="bookRead" value="yes" class="input-form">Yes <input type="radio" id="bookReadN" name="bookRead" value="no" class="input-form">No</label>
+            <button type="submit" class="addButtons">Save Book</button>
+            <button type="button" class="closebutton">Cancel</button>
+        </form>
+    </dialog>
+    <script src="scripts/javascript.js"></script>
 </body>
 </html>
