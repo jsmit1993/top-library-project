@@ -41,11 +41,25 @@ body {
     border-radius: 20px;
 }
 
+.readStatus {
+    background-color: limegreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
 .bookDisplay {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(75px, 250px));
     gap: 10px;
 
+}
+
+p {
+    margin: 5px;
+    padding: 5px;
 }
 
 .bookCard {

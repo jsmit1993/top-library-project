@@ -57,8 +57,10 @@ function Book(title, author, genre, pages, read, bookId) {
     this.pages = pages;
     this.read = read;
     this.bookId = bookId;
+}
 
-    
+Book.prototype.toggleRead = function() {
+    this.read = this.read === 'yes' ? 'no' : 'yes';
 }
 
 bookForm.addEventListener('submit', (e) => {
@@ -124,15 +126,21 @@ function buildBookDisplay(bookLibrary) {
         bookIds.style.display = 'none';
         bookCard.appendChild(bookIds);
 
+        let readStatus = document.createElement('button');
+        readStatus.classList.add('readStatus');
+        readStatus.textContent = 'Change Read Status';
+        readStatus.addEventListener('click', () => {
+            book.toggleRead();
+            bookDisplay.innerHTML = '';
+            buildBookDisplay(myLibrary);
+        })
+        bookCard.appendChild(readStatus);
+
         let deletebutton = document.createElement('button');
         deletebutton.classList.add('deleteButton');
         deletebutton.textContent = 'Delete Book';
 
-        deletebutton.addEventListener('click', () => {
-            myLibrary = myLibrary.filter(item => item.bookId !== book.bookId);
-            bookDisplay.innerHTML = '';
-            buildBookDisplay(myLibrary);
-        });
+        deletebutton.addEventListener('click', () => deleteBookButton(book.bookId));
 
 
         bookCard.appendChild(deletebutton);
@@ -144,8 +152,12 @@ function buildBookDisplay(bookLibrary) {
 buildBookDisplay(myLibrary);
 
 
+function deleteBookButton(bookID) {
+    myLibrary = myLibrary.filter(item => item.bookId !== bookID);
+    bookDisplay.innerHTML = '';
+    buildBookDisplay(myLibrary)
+}
 
 
-//buttons for opening modal dialog window
 
-//
+
