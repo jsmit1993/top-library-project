@@ -3,6 +3,7 @@ const addButton = document.querySelector('.addButton');
 const closeButton = document.querySelector('.closebutton');
 const bookForm = document.querySelector('#bookForm');
 const bookDisplay = document.querySelector('.bookDisplay');
+const saveButton = document.querySelector('.addButtons');
 
 addButton.addEventListener('click', () => {
     bookModal.showModal();
@@ -13,7 +14,7 @@ closeButton.addEventListener('click', ()=> {
     bookForm.reset();
 })
 
-const myLibrary = [
+let myLibrary = [
     {
         title: "Harry Potter and the Sorcerer's Stone",
         author: "J.K. Rowling",
@@ -56,7 +57,31 @@ function Book(title, author, genre, pages, read, bookId) {
     this.pages = pages;
     this.read = read;
     this.bookId = bookId;
+
+    
 }
+
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const title = document.querySelector('#bookTitle').value;
+    const author = document.querySelector('#bookAuthor').value;
+    const genre = document.querySelector('#bookGenre').value;
+    const pages = document.querySelector('#bookPages').value;
+
+    const readRadio = document.querySelector('input[name="bookRead"]:checked');
+    const read = readRadio ? readRadio.value : "no";
+
+    const bookID = crypto.randomUUID();
+    console.log(title, author, genre, pages, read, bookID);
+    addBookToLibrary(title, author, genre, pages, read, bookID);
+    
+    bookDisplay.innerHTML = ''; 
+    buildBookDisplay(myLibrary);
+
+    bookForm.reset();
+    bookModal.close();
+})
 
 function addBookToLibrary(title, author, genre, pages, read, bookId) {
     let newBook = new Book(title, author, genre, pages, read, bookId);
@@ -70,27 +95,27 @@ function buildBookDisplay(bookLibrary) {
 
         let bookTitle = document.createElement('p');
         bookTitle.classList.add('bookTitle');
-        bookTitle.textContent = book.title;
+        bookTitle.textContent = 'Title: ' + book.title;
         bookCard.appendChild(bookTitle);
 
         let bookAuthor = document.createElement('p');
         bookAuthor.classList.add('bookAuthor');
-        bookAuthor.textContent = book.author;
+        bookAuthor.textContent = 'Author: ' + book.author;
         bookCard.appendChild(bookAuthor);
 
         let bookGenre = document.createElement('p');
         bookGenre.classList.add('bookGenre');
-        bookGenre.textContent = book.genre;
+        bookGenre.textContent = 'Genre: ' + book.genre;
         bookCard.appendChild(bookGenre);
 
         let bookPages = document.createElement('p');
         bookPages.classList.add('bookPages');
-        bookPages.textContent = book.pages;
+        bookPages.textContent = 'Page Count: ' + book.pages;
         bookCard.appendChild(bookPages);
 
         let bookRead = document.createElement('p');
         bookRead.classList.add('bookRead');
-        bookRead.textContent = book.read;
+        bookRead.textContent = 'Been Read: ' + book.read;
         bookCard.appendChild(bookRead);
 
         let bookIds = document.createElement('p');
@@ -101,7 +126,15 @@ function buildBookDisplay(bookLibrary) {
 
         let deletebutton = document.createElement('button');
         deletebutton.classList.add('deleteButton');
-        deletebutton.textContent = 'Delete Book'
+        deletebutton.textContent = 'Delete Book';
+
+        deletebutton.addEventListener('click', () => {
+            myLibrary = myLibrary.filter(item => item.bookId !== book.bookId);
+            bookDisplay.innerHTML = '';
+            buildBookDisplay(myLibrary);
+        });
+
+
         bookCard.appendChild(deletebutton);
         
         bookDisplay.appendChild(bookCard);
@@ -109,7 +142,9 @@ function buildBookDisplay(bookLibrary) {
 }
 
 buildBookDisplay(myLibrary);
-//display function - this needs to be a for loop that pulls the hard coded, and the added and displays them in the correct spot
+
+
+
 
 //buttons for opening modal dialog window
 
