@@ -37,12 +37,13 @@ body {
     color: white;
     border: none;
     padding: 10px;
+    margin: 5px;
     font-size: 15px;
     border-radius: 20px;
 }
 
 .readStatus {
-    background-color: limegreen;
+    background-color: dodgerblue;
     color: white;
     border: none;
     padding: 10px;
